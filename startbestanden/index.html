@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Ladies at the Movies, Men in control</title>
+       
+    </head>
+    <body>
+        <div class="container">
+            <h1>Ladies at the Movies, Men at Home (in Control)</h1>
+            <form id="frmFilm">
+                    <div><label>titel</label><input type="text" id="titel" name="titel"/></div>
+                    <div><label>filmNr</label><input type="text" id="filmNr" name="filmNr"/></div>
+                    <div><label>beschrijving</label><textarea id="beschrijving" name="beschrijving"></textarea></div>
+                    <div><label>regisseur</label><input type="text" id="regisseur" name="regisseur"/></div>
+                    <div><label>genre</label><input type="text" id="genre" name="genre"/></div>
+                    <div><label>duurtijd</label><input type="text" id="duur" name="duur"/></div>
+                    <div><label>release datum</label><input type="date" id="release" name="release"/></div>
+                    <div><label>Cast (vb: Robert De Niro, Jack Nicholson)</label><input type="text"name="cast" name="cast" title="gebruik een komma als afscheider" /></div>
+                    <div><label>cover image</label><input type="file" id="foto" name="foto"/></div>
+                    <div><label></label><button type="button" id="voegtoe">voeg toe</button></div>
+                </form>
+               <div id="films">   <!-- film container -->
+                <h2>Film Overzicht</h2> 
+                <div class="lijst"></div>
+               </div>
+        </div> 
+        <script id="filmTemplate" type="text/template">
+            <img src="images/<%= foto %>" alt="<%= titel %>" />
+            <div class="kol">
+            <h2><%= titel %> <small>(<%= filmNr %>)</small></h2>
+            <p><%= beschrijving %></p>
+            <dl>
+            <dt>regisseur:</dt>
+            <dd><%= regisseur %></dd>
+            <dt>genre:</dt>
+            <dd><%= genre %></dd>
+            <dt>duurtijd:</dt>
+            <dd><%= duur %></dd>
+            <dt>release:</dt>
+            <dd><%= release %></dd>
+            <dt>cast:</dt>
+            <dd><ul>
+            <% _.each(cast, function(item){ %>
+            <li><%= item.acteur %></li>
+            <% })  %>
+            </ul></dd>
+            <dl>
+            <button class='delete'>verwijder</button>
+            </div>
+        </script>
+    </body>
+</html>
+

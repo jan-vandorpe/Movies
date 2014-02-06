@@ -1,0 +1,4 @@
+var films =[
+        { "filmId":"1", "titel": "Elysium", "beschrijving": "We bevinden ons in het jaar 2159 en de mensheid is verdeeld in twee sociale klassen. De allerrijksten leiden een heerlijk zorgeloos leven op het ongerepte ruimtestation Elysium, terwijl de armen moeten zien te overleven op de overbevolkte en verwoeste Aarde.", "genre":"Science Fiction", "duur":"1u 20min", "regisseur":"Neil Blomkamp", "release":"14/08/2013", "foto":"Elysium_FO.jpg" },
+      
+    ]
