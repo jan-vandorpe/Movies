@@ -23,6 +23,6 @@ requirejs.config({
 require(['app/movies'],
     function   (movies) {
         console.log('movies kan gestart worden')
-        //movies.start();         //start de movies app
+        movies.start();         //start de movies app
  });
 
