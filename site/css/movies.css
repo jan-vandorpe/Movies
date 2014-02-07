@@ -26,4 +26,15 @@
 .film dd{display:inline; width: 65%; clear:right; float:right; margin:0}
 .delete {float:right;}
 
-
+/*clearfix hack*/
+.clearFix:before, .clearFix:after {
+	content: " ";
+	display: table;
+}
+.clearFix:after {
+	clear: both;
+}
+/* enkel voor IE6/7  */ 
+.clearFix {
+ *zoom: 1;
+}
