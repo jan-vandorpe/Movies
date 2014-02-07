@@ -10,7 +10,8 @@
     <body>
         <div class="container">
             <h1>Ladies at the Movies, Men at Home (in Control)</h1>
-            <form id="frmFilm">
+            <div id="films">   <!-- film container --> 
+                <form id="frmFilm">
                     <div><label>titel</label><input type="text" id="titel" name="titel"/></div>
                     <div><label>filmNr</label><input type="text" id="filmNr" name="filmNr"/></div>
                     <div><label>beschrijving</label><textarea id="beschrijving" name="beschrijving"></textarea></div>
@@ -18,17 +19,10 @@
                     <div><label>genre</label><input type="text" id="genre" name="genre"/></div>
                     <div><label>duurtijd</label><input type="text" id="duur" name="duur"/></div>
                     <div><label>release datum</label><input type="date" id="release" name="release"/></div>
-                    <div><label>Cast (vb: Robert De Niro, Jack Nicholson)</label><input type="text"name="cast" name="cast" title="gebruik een komma als afscheider" /></div>
-                    
+                    <!-- <div><label>Cast (vb: Robert De Niro, Jack Nicholson)</label><input type="text" name="cast" title="gebruik een komma als afscheider" /></div> -->
                     <div><label>cover image</label><input type="file" id="foto" name="foto"/></div>
                     <div><label></label><button type="button" id="voegtoe">voeg toe</button></div>
                 </form>
-
-         
-               
-              
-               
-               <div id="films">   <!-- film container -->
                 <h2>Film Overzicht</h2> 
                  <!-- <div id="filter"><label>Kies een genre</label></div> -->
                 <div class="lijst"></div>
