@@ -31,8 +31,11 @@ app.listen(port, function() {
 mongoose.connect('mongodb://localhost/filmotheek'); 
 // niet vergeten data in de db te zetten met filmotheek.js
 // MongoDB MOET EERST opgestart zijn anders crashed dit script
-
-
+// 
+//Cast Schema
+var Cast = new mongoose.Schema({
+    acteur: String
+})
 //Film Schema
 var Film = new mongoose.Schema({
     filmNr: Number,
@@ -42,7 +45,8 @@ var Film = new mongoose.Schema({
     duur: String,
     regisseur: String,
     release: Date,
-    foto: String
+    foto: String,
+    cast: [Cast]
 })
 
 //Mongoose Model
@@ -52,7 +56,13 @@ var FilmModel = mongoose.model('Film', Film);
 //
 //ROUTES======================================================
 //
-//
+//de API moet overeen komen met de standaard Backbone Sync handler
+//deze mapped CRUD naar REST op deze manier:
+//create → POST   /collection
+//read → GET   /collection[/id]
+//update → PUT   /collection/id
+//delete → DELETE   /collection/id
+
 //GET /api : test
 app.get('/api', function(request, response) {
     response.send('Filmotheek is actief');

@@ -20,7 +20,7 @@
                     <div><label>genre</label><input type="text" id="genre" name="genre"/></div>
                     <div><label>duurtijd</label><input type="text" id="duur" name="duur"/></div>
                     <div><label>release datum</label><input type="date" id="release" name="release"/></div>
-                    <!-- <div><label>Cast (vb: Robert De Niro, Jack Nicholson)</label><input type="text" name="cast" title="gebruik een komma als afscheider" /></div> -->
+                    <div><label>Cast (vb: Robert De Niro, Jack Nicholson)</label><input type="text" name="cast" title="gebruik een komma als afscheider" /></div>
                     <div><label>cover image</label><input type="file" id="foto" name="foto"/></div>
                     <div><label></label><button type="button" id="voegtoe">voeg toe</button></div>
                 </form>
@@ -44,7 +44,12 @@
             <dd><%= duur %></dd>
             <dt>release:</dt>
             <dd><%= release %></dd>
-            
+            <dt>cast:</dt>
+            <dd><ul>
+            <% _.each(cast, function(item){ %>
+            <li><%= item.acteur %></li>
+            <% })  %>
+            </ul></dd>
             </dl>
             <button class='delete'>verwijder</button>
             </div>
