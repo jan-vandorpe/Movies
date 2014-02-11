@@ -70,15 +70,49 @@ define([
                     
                     this.listenTo(this.collection, 'add', this.renderFilm); //event listener voor add event Collection
                     this.listenTo(this.collection, 'reset', this.render);
-                    //this.render();
+                    this.listenToOnce(this.collection, 'reset', this.addSelect); //éénmalige eventlistener
+                    this.listenTo(this,"change:filterType", this.filterByType); //on custom event
+                    this.listenTo(this.collection,"sync", this.storeBaseCollection); //éénmaal by fetch
+                    //////this.render();
         },
         events: {
-            "click #voegtoe": "addFilm"
+             "change #genres": "setFilter",
+             "click #voegtoe": "addFilm"
         },
-        get$Lijst:function(){
+        storeBaseCollection: function(){
+           
+            this.baseCollection = new Backbone.Collection(this.collection.models);
+            console.log('storeBaseCollection: ',this.baseCollection)
+        },
+         setFilter: function(e) {
+            //filtert de collection
+            
+            this.filterType = e.currentTarget.value; //geen this gebruiken
+            //this.oldCollection = this.collection;
+            //console.log('setFilter:', this.filterType);
+            this.trigger("change:filterType");
+        },
+        filterByType: function() {
+            console.log("filterByType:",this.filterType);
+            if (this.filterType === "all") {
+                //this.collection.fetch();
+                this.collection.reset(this.baseCollection.models)
+            } else {
+                //this.collection.fetch({silent:true});
+                this.collection.reset(this.baseCollection.models,{silent:true})
+               
+                var filtered = this.collection.where({genre: this.filterType})
+                //console.log("filtered:",filtered);
+                this.collection.reset(filtered);
+                //console.log("base:",this.baseCollection)
+                
+            }
+        },
+                get$Lijst:function(){
             return this.$el.find('.lijst')
         },
         render: function () {
+            this.$lijst.empty();//eerste legen want anders na filteren
             _.each(this.collection.models, function (item) {
                 this.renderFilm(item);
             }, this);
@@ -117,8 +151,27 @@ define([
              this.collection.create(formData);           //tweede versie met API; create() triggert ook een add event 
             console.log('addFilm formData: ', formData);
             
-     }
-
+        },
+        getGenres: function() {
+            return _.uniq(this.collection.pluck("genre"), false, function(genre) {
+                return genre.toLowerCase();
+            });
+        },
+        createSelect: function() {
+            var select = $("<select id='genres'><option value='all'>All</option></select>");
+            //console.log("genres", this.getGenres())
+            _.each(this.getGenres(), function(item) {
+                var option = $("<option/>", {
+                    value: item,
+                    text: item
+                }).appendTo(select);
+            });
+            return select;
+        },
+        addSelect: function() {
+            $("#filter").append(this.createSelect()); //select toevoegen 
+        },
+                
     });
 
 
